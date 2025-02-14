@@ -15,6 +15,12 @@ class _HomeViewState extends State<HomeView> {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController major = TextEditingController();
+  Map dataUpdate = {
+    "id": '',
+    "fname": '',
+    "lname": '',
+    "major": '',
+  };
 
   @override
   void initState() {
@@ -60,6 +66,19 @@ class _HomeViewState extends State<HomeView> {
         ),
       );
     });
+  }
+
+  void filterData(idStudent) {
+    Map<String, dynamic>? dataFilter = data.firstWhere((d) => d['id'] == idStudent);
+    setState(() {
+      dataUpdate = {
+        "id" : dataFilter?['id'],
+        "fname" : dataFilter?['fname'],
+        "lname" : dataFilter?['lname'],
+        "major" : dataFilter?['major'],
+      };
+    });   
+    print("ID STUDENT $idStudent");
   }
 
   @override
